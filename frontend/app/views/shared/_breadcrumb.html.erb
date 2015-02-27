@@ -10,7 +10,7 @@
                   <%= link_to strip_tags(crumb[0].to_s) , crumb[1] %>
                </li>
             <% else %>
-               <li class="active"><%= strip_tags( crumb[0].to_s)  %></li>
+               <li class="active"><%= strip_tags( crumb[0].to_s )  %></li>
             <% end %>
          <% end %>
         <% if flash.key? :spawned_from_accession %>
