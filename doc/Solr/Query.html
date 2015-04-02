@@ -1608,7 +1608,8 @@
 252
 253
 254
-255</pre>
+255
+256</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'backend/app/model/solr.rb', line 214</span>
@@ -1631,6 +1632,7 @@
   <span class='rubyid_add_solr_param identifier id'>add_solr_param</span><span class='lparen token'>(</span><span class='symbol val'>:facet</span><span class='comma token'>,</span> <span class='string val'>&quot;true&quot;</span><span class='rparen token'>)</span>
   <span class='rubyid_unless unless kw'>unless</span> <span class='rubyid_@facet_fields ivar id'>@facet_fields</span><span class='dot token'>.</span><span class='rubyid_empty? fid id'>empty?</span>
     <span class='rubyid_add_solr_param identifier id'>add_solr_param</span><span class='lparen token'>(</span><span class='symbol val'>:&quot;facet.field&quot;</span><span class='comma token'>,</span> <span class='rubyid_@facet_fields ivar id'>@facet_fields</span><span class='rparen token'>)</span>
+    <span class='rubyid_add_solr_param identifier id'>add_solr_param</span><span class='lparen token'>(</span><span class='symbol val'>:&quot;facet.limit&quot;</span><span class='comma token'>,</span> <span class='rubyid_AppConfig constant id'>AppConfig</span><span class='lbrack token'>[</span><span class='symbol val'>:solr_facet_limit</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
   <span class='rubyid_end end kw'>end</span>
 
   <span class='rubyid_if if kw'>if</span> <span class='rubyid_@query_type ivar id'>@query_type</span> <span class='eq op'>==</span> <span class='symbol val'>:edismax</span>
@@ -1699,7 +1701,7 @@
 </div>
 
     <div id="footer">
-  ArchivesSpace Version tomcat Documentation Generated on Wed Feb  4 02:19:56 2015 by
+  ArchivesSpace Version v1.2.0 Documentation Generated on Thu Apr  2 09:09:11 2015 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-1.9.3).
 </div>

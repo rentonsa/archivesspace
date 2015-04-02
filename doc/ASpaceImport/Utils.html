@@ -439,20 +439,20 @@
       <pre class="lines">
 
 
-136
-137
-138
-139
-140
 141
 142
 143
 144
 145
-146</pre>
+146
+147
+148
+149
+150
+151</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'backend/app/converters/lib/utils.rb', line 136</span>
+      <pre class="code"><span class="info file"># File 'backend/app/converters/lib/utils.rb', line 141</span>
 
 <span class='rubyid_def def kw'>def</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_ref_type_list identifier id'>ref_type_list</span><span class='lparen token'>(</span><span class='rubyid_property_ref_type identifier id'>property_ref_type</span><span class='rparen token'>)</span>
 
@@ -486,11 +486,6 @@
       <pre class="lines">
 
 
-149
-150
-151
-152
-153
 154
 155
 156
@@ -500,10 +495,15 @@
 160
 161
 162
-163</pre>
+163
+164
+165
+166
+167
+168</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'backend/app/converters/lib/utils.rb', line 149</span>
+      <pre class="code"><span class="info file"># File 'backend/app/converters/lib/utils.rb', line 154</span>
 
 <span class='rubyid_def def kw'>def</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_update_record_references identifier id'>update_record_references</span><span class='lparen token'>(</span><span class='rubyid_record identifier id'>record</span><span class='comma token'>,</span> <span class='rubyid_ref_source identifier id'>ref_source</span><span class='rparen token'>)</span>
   <span class='rubyid_if if kw'>if</span> <span class='rubyid_record identifier id'>record</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_Array constant id'>Array</span><span class='rparen token'>)</span> <span class='orop op'>||</span> <span class='rubyid_record identifier id'>record</span><span class='dot token'>.</span><span class='rubyid_respond_to? fid id'>respond_to?</span><span class='lparen token'>(</span><span class='symbol val'>:to_array</span><span class='rparen token'>)</span>
@@ -601,7 +601,12 @@
 130
 131
 132
-133</pre>
+133
+134
+135
+136
+137
+138</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'backend/app/converters/lib/utils.rb', line 73</span>
@@ -662,6 +667,11 @@
     <span class='rubyid_lambda identifier id'>lambda</span> <span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='rubyid_val identifier id'>val</span><span class='bitor op'>|</span>
       <span class='rubyid_val identifier id'>val</span><span class='dot token'>.</span><span class='rubyid_split identifier id'>split</span><span class='lparen token'>(</span><span class='string val'>&quot;\n&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='rubyid_map identifier id'>map</span> <span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='rubyid_s identifier id'>s</span><span class='bitor op'>|</span> <span class='rubyid_s identifier id'>s</span><span class='dot token'>.</span><span class='rubyid_strip identifier id'>strip</span> <span class='rbrace token'>}</span><span class='dot token'>.</span><span class='rubyid_join identifier id'>join</span><span class='lparen token'>(</span><span class='string val'>&quot;\n&quot;</span><span class='rparen token'>)</span>
     <span class='rbrace token'>}</span>
+  
+  <span class='rubyid_when when kw'>when</span> <span class='symbol val'>:integer</span>
+    <span class='rubyid_lambda identifier id'>lambda</span> <span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='rubyid_val identifier id'>val</span><span class='bitor op'>|</span>
+      <span class='rubyid_val identifier id'>val</span><span class='dot token'>.</span><span class='rubyid_to_i identifier id'>to_i</span>
+    <span class='rbrace token'>}</span>
 
   <span class='rubyid_else else kw'>else</span>
     <span class='rubyid_raise identifier id'>raise</span> <span class='dstring node'>&quot;Can't handle #{property_type}&quot;</span>
@@ -678,7 +688,7 @@
 </div>
 
     <div id="footer">
-  ArchivesSpace Version tomcat Documentation Generated on Wed Feb  4 02:19:49 2015 by
+  ArchivesSpace Version v1.2.0 Documentation Generated on Thu Apr  2 09:09:04 2015 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-1.9.3).
 </div>

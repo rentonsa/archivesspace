@@ -560,7 +560,25 @@
 321
 322
 323
-324</pre>
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'backend/app/converters/digital_object_converter.rb', line 33</span>
@@ -701,6 +719,17 @@
     <span class='string val'>'user_defined_enum_3'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'user_defined.enum_3'</span><span class='comma token'>,</span>
     <span class='string val'>'user_defined_enum_4'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'user_defined.enum_4'</span><span class='comma token'>,</span>
 
+    <span class='string val'>'file_version_file_uri'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'file_version.file_uri'</span><span class='comma token'>,</span>
+    <span class='string val'>'file_version_publish'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'file_version.publish'</span><span class='comma token'>,</span>
+    <span class='string val'>'file_version_use_statement'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'file_version.use_statement'</span><span class='comma token'>,</span>
+    <span class='string val'>'file_version_xlink_actuate_attribute'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'file_version.xlink_actuate_attribute'</span><span class='comma token'>,</span>
+    <span class='string val'>'file_version_xlink_show_attribute'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'file_version.xlink_show_attribute'</span><span class='comma token'>,</span>
+    <span class='string val'>'file_version_file_format_name'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'file_version.file_format_name'</span><span class='comma token'>,</span>
+    <span class='string val'>'file_version_file_format_version'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'file_version.file_format_version'</span><span class='comma token'>,</span>
+    <span class='string val'>'file_version_file_size_bytes'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'file_version.file_size_bytes'</span><span class='comma token'>,</span>
+    <span class='string val'>'file_version_checksum'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'file_version.checksum'</span><span class='comma token'>,</span>
+    <span class='string val'>'file_version_checksum_method'</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'file_version.checksum_method'</span><span class='comma token'>,</span>
+    
     <span class='comment val'># 2. Define data handlers</span>
     <span class='comment val'>#    :record_type of the schema (if other than the handler key)</span>
     <span class='comment val'>#    :defaults - hash which maps property keys to default values if nothing shows up in the source date</span>
@@ -854,7 +883,14 @@
         <span class='rubyid_digital_object identifier id'>digital_object</span> <span class='assign token'>=</span> <span class='rubyid_cache identifier id'>cache</span><span class='dot token'>.</span><span class='rubyid_find identifier id'>find</span> <span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='rubyid_obj identifier id'>obj</span><span class='bitor op'>|</span> <span class='rubyid_obj identifier id'>obj</span><span class='dot token'>.</span><span class='rubyid_class identifier id'>class</span><span class='dot token'>.</span><span class='rubyid_record_type identifier id'>record_type</span> <span class='eq op'>==</span> <span class='string val'>'digital_object'</span><span class='rbrace token'>}</span>
         <span class='rubyid_digital_object identifier id'>digital_object</span><span class='dot token'>.</span><span class='rubyid_user_defined identifier id'>user_defined</span> <span class='assign token'>=</span> <span class='rubyid_this identifier id'>this</span>
       <span class='rbrace token'>}</span>
-    <span class='rbrace token'>}</span>
+    <span class='rbrace token'>}</span><span class='comma token'>,</span>
+    
+    <span class='symbol val'>:file_version</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span>
+      <span class='symbol val'>:on_row_complete</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_Proc constant id'>Proc</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span> <span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='rubyid_cache identifier id'>cache</span><span class='comma token'>,</span> <span class='rubyid_this identifier id'>this</span><span class='bitor op'>|</span>
+        <span class='rubyid_digital_object identifier id'>digital_object</span> <span class='assign token'>=</span> <span class='rubyid_cache identifier id'>cache</span><span class='dot token'>.</span><span class='rubyid_find identifier id'>find</span> <span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='rubyid_obj identifier id'>obj</span><span class='bitor op'>|</span> <span class='rubyid_obj identifier id'>obj</span><span class='dot token'>.</span><span class='rubyid_class identifier id'>class</span><span class='dot token'>.</span><span class='rubyid_record_type identifier id'>record_type</span> <span class='match op'>=~</span> <span class='regexp val'>/^digital_object/</span> <span class='rbrace token'>}</span>
+        <span class='rubyid_digital_object identifier id'>digital_object</span><span class='dot token'>.</span><span class='rubyid_file_versions identifier id'>file_versions</span> <span class='lshft op'>&lt;&lt;</span> <span class='rubyid_this identifier id'>this</span>
+      <span class='rbrace token'>}</span>
+    <span class='rbrace token'>}</span><span class='comma token'>,</span>
   <span class='rbrace token'>}</span>
 <span class='rubyid_end end kw'>end</span>
 </pre>
@@ -979,7 +1015,7 @@
 </div>
 
     <div id="footer">
-  ArchivesSpace Version tomcat Documentation Generated on Wed Feb  4 02:20:04 2015 by
+  ArchivesSpace Version v1.2.0 Documentation Generated on Thu Apr  2 09:09:20 2015 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-1.9.3).
 </div>

@@ -342,10 +342,6 @@
       <pre class="lines">
 
 
-24
-25
-26
-27
 28
 29
 30
@@ -354,10 +350,14 @@
 33
 34
 35
-36</pre>
+36
+37
+38
+39
+40</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common/advanced_search.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'common/advanced_search.rb', line 28</span>
 
 <span class='rubyid_def def kw'>def</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_load_definitions identifier id'>load_definitions</span>
   <span class='rubyid_unless unless kw'>unless</span> <span class='rubyid_@loaded ivar id'>@loaded</span>
@@ -393,18 +393,18 @@
       <pre class="lines">
 
 
-39
-40
-41
-42
 43
 44
 45
 46
-47</pre>
+47
+48
+49
+50
+51</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'common/advanced_search.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'common/advanced_search.rb', line 43</span>
 
 <span class='rubyid_def def kw'>def</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_set_default identifier id'>set_default</span><span class='lparen token'>(</span><span class='rubyid_type identifier id'>type</span><span class='comma token'>,</span> <span class='rubyid_name identifier id'>name</span><span class='rparen token'>)</span>
   <span class='rubyid_raise identifier id'>raise</span> <span class='dstring node'>&quot;Unknown field: #{name}&quot;</span> <span class='rubyid_unless unless_mod kw'>unless</span> <span class='rubyid_@fields ivar id'>@fields</span><span class='dot token'>.</span><span class='rubyid_has_key? fid id'>has_key?</span><span class='lparen token'>(</span><span class='rubyid_name identifier id'>name</span><span class='rparen token'>)</span>
@@ -439,14 +439,22 @@
 18
 19
 20
-21</pre>
+21
+22
+23
+24
+25</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'common/advanced_search.rb', line 18</span>
 
 <span class='rubyid_def def kw'>def</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_solr_field_for identifier id'>solr_field_for</span><span class='lparen token'>(</span><span class='rubyid_field identifier id'>field</span><span class='rparen token'>)</span>
   <span class='rubyid_load_definitions identifier id'>load_definitions</span>
-  <span class='rubyid_@fields ivar id'>@fields</span><span class='dot token'>.</span><span class='rubyid_fetch identifier id'>fetch</span><span class='lparen token'>(</span><span class='rubyid_field identifier id'>field</span><span class='dot token'>.</span><span class='rubyid_to_s identifier id'>to_s</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='rubyid_solr_field identifier id'>solr_field</span>
+  <span class='rubyid_field identifier id'>field</span> <span class='assign token'>=</span> <span class='rubyid_@fields ivar id'>@fields</span><span class='dot token'>.</span><span class='rubyid_fetch identifier id'>fetch</span><span class='lparen token'>(</span><span class='rubyid_field identifier id'>field</span><span class='dot token'>.</span><span class='rubyid_to_s identifier id'>to_s</span><span class='rparen token'>)</span> <span class='rubyid_do do kw'>do</span>
+    <span class='rubyid_raise identifier id'>raise</span> <span class='dstring node'>&quot;Unrecognized search field: #{field}&quot;</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='rubyid_field identifier id'>field</span><span class='dot token'>.</span><span class='rubyid_solr_field identifier id'>solr_field</span>
 <span class='rubyid_end end kw'>end</span>
 </pre>
     </td>
@@ -459,7 +467,7 @@
 </div>
 
     <div id="footer">
-  ArchivesSpace Version tomcat Documentation Generated on Wed Feb  4 02:20:08 2015 by
+  ArchivesSpace Version v1.2.0 Documentation Generated on Thu Apr  2 09:09:25 2015 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-1.9.3).
 </div>
