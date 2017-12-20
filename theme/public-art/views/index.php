@@ -6,15 +6,14 @@
         <li><span></span></li>
         <li><span></span></li>
         <li><span></span></li>
-        <li><span></span></li>
-        <li><span></span></li>
     </ul>
     <div class="text-center home-search-buttons col-xs-12">
-        <a href="./search_results" class="home-search col-xs-4">
-            <i class="fa fa-search" aria-hidden="true"></i><br>
+        <form action = "./search/*:*/" class="home-search col-xs-4" method ="get">
+            <input type="hidden" name ="type" value = "images"/>
+            <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button><br>
             Search art on campus
-        </a>
-        <a href="./location_results" class="home-search col-xs-4">
+        </form>
+        <a href="./search/*:*/&type=locations" class="home-search col-xs-4">
             <i class="fa fa-map-marker" aria-hidden="true"></i><br>
             Search by location
         </a>

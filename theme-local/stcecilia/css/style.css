@@ -812,7 +812,7 @@ div[id^="gallery"] {
 }
 
 #gallerykb {
-    background-image: url(../images/KB.jpg);
+    background-image: url(https://images.is.ed.ac.uk/luna/servlet/detail/UoEart~2~2~73063~164073);
 }
 
 #gallerywesst {
@@ -1021,4 +1021,45 @@ div[id^="openseadragon"] {
 #info-box{
     width:100%;
     padding: 10px;
+}
+
+/* Manifest iteration additions */
+.iiiflogo                        { display: inline-block; width: 50px; height: 50px;  background: url(../images/iiiflogo.png) no-repeat 0px 0px;}
+.lunalogo                        { display: inline-block; width: 50px; height: 50px;  background: url(../images/LUNAIIIF.png) no-repeat 0px 0px;}
+.uvlogo                          { display: inline-block; width: 50px; height: 50px;  background: url(../images/uv.png) no-repeat 0px 0px;}
+.ccbylogo                        { display: inline-block; width: 150px; height: 50px; background: url(../images/cc-by.png) no-repeat 0px 0px;}
+
+/*.thumb-strip {
+    text-align: center;
+    width: 100%;
+    margin-top: 20px;
+    padding-bottom:2px;
+    background-color: #ffffff;
+    border: 1px solid #DCDCDC;
+    border-radius: 12px;
+    display: inline-block;
+    padding-top:2px;
+}*/
+
+.full-image                         { width: 660px;}
+.imageContainer                    { width: 660px; border: 1px solid #DCDCDC;}
+label
+{
+    font-size : xx-small;
+}
+
+.json-link
+{
+    vertical-align: middle;
+    margin: auto;
+    text-align:center;
+    padding-top: 15px;
+}
+
+.json-link-item
+{
+    padding: 2px;
+    vertical-align: middle;
+    text-align:center;
+    height:50px;
 }

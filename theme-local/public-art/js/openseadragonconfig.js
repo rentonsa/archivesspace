@@ -6,7 +6,7 @@
     var showNavigator = screen.width>768;
     var seadragon = OpenSeadragon({
         id: "openseadragon",
-        prefixUrl: "assets/openseadragon/images/",
+        prefixUrl: "https://test.collections.ed.ac.uk/assets/openseadragon/images/",
         toolbar: "toolbarDiv",
         zoomInButton: "zoom-in",
         zoomOutButton: "zoom-out",

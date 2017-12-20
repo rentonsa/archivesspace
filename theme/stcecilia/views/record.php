@@ -20,6 +20,7 @@ $short_field = $this->skylight_utilities->getField("Short Description");
 $date_field = $this->skylight_utilities->getField("Date");
 $media_uri = $this->config->item("skylight_media_url_prefix");
 $theme = $this->config->item("skylight_theme");
+$acc_no_field = $this->skylight_utilities->getField("Accession Number");
 
 $type = 'Unknown';
 $mainImageTest = false;
@@ -83,7 +84,9 @@ if(isset($solr[$bitstream_field]) && $link_bitstream) {
                 $videoLink .= '</video>';
                 $videoFile = true;
             }
-        } else if ((strpos($b_filename, ".webm") > 0) or (strpos($b_filename, ".WEBM") > 0)) {
+        }
+        else if ((strpos($b_filename, ".webm") > 0) or (strpos($b_filename, ".WEBM") > 0))
+        {
             //Microsoft Edge needs to be dealt with. Chrome calls itself Safari too, but that doesn't matter.
             if (strpos($_SERVER['HTTP_USER_AGENT'], 'Edge') == false) {
                 if (strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome') == true) {
@@ -96,6 +99,20 @@ if(isset($solr[$bitstream_field]) && $link_bitstream) {
                     $videoFile = true;
                 }
             }
+        }
+        else if ((strpos($b_filename, ".json") > 0) or (strpos($b_filename, ".JSON") > 0))
+        {
+            if(isset($solr[$acc_no_field])) {
+                $accno =  $solr[$acc_no_field][0];
+            }
+            $bitstreamLink = $this->skylight_utilities->getBitstreamLink($bitstream);
+            $bitstreamUri = $this->skylight_utilities->getBitstreamUri($bitstream);
+            $manifest  = base_url().'stcecilias/record/'.$b_handle_id.'/'.$b_seq.'/'.$b_filename;
+            $jsonLink  = '<span class ="json-link-item"><a href="https://librarylabs.ed.ac.uk/iiif/uv/?manifest='.$manifest.'" target="_blank" class="uvlogo" title="View in UV"></a></span>';
+            $jsonLink .= '<span class ="json-link-item"><a href="https://images.is.ed.ac.uk/luna/servlet/view/search?search=SUBMIT&q='.$accno.'" class="lunalogo" title="View in LUNA"></a></span>';
+            $jsonLink .= '<span class ="json-link-item"><a href="'.$manifest.'" target="_blank"  class="iiiflogo" title="IIIF manifest"></a></span>';
+            //$jsonLink .= '<span class ="json-link-item"><a target="_blank" href="http://tomcrane.github.io/scratch/mirador/?manifest='.$manifest.'"><img src="http://digital.nls.uk/da/assets/graphics/misc/logo-mirador-24-32.png" class="iiiflogo" title="View in Mirador"></a></span>';
+            $jsonLink .= '<span class ="json-link-item"><a href = "https://creativecommons.org/licenses/by/3.0/" class ="ccbylogo" title="All images CC-BY" target="_blank" ></a></span>';
         }
     }
 }
@@ -287,11 +304,44 @@ if (isset($solr[$link_uri_field]))
             }
             if ($portrait)
             {
-                $thumbnailLink[$numThumbnails] .= '<img src = "' . $linkURI . '" class="record-thumb-strip" title="' . $solr[$title_field][0] . '" /></label>';
+                $thumbnailLink[$numThumbnails] .= '<img src = "' . $linkURI . '" class="record-thumb-strip" title="' . $solr[$title_field][0];
             } else
             {
-                $thumbnailLink[$numThumbnails] .= '<img src = "' . $linkURI . '" class="record-thumb-strip" title="' . $solr[$title_field][0] . '" /></label>';
+                $thumbnailLink[$numThumbnails] .= '<img src = "' . $linkURI . '" class="record-thumb-strip" title="' . $solr[$title_field][0];
             }
+
+            $manifest = str_replace("iiif/", "iiif/m/", $linkURI);
+            $manifest = str_replace("full/full/0/default.jpg", "manifest", $manifest);
+
+            $json = file_get_contents($manifest);
+
+            $jobj = json_decode($json, true);
+            //print_r ($jobj);
+            $error = json_last_error();
+            $jsonMD = $jobj['sequences'][0]['canvases'][0]['metadata'];
+            $rights = '';
+            $photographer = '';
+            $photoline = '';
+            foreach ($jsonMD as $jsonMDPair)
+            {
+
+                if ($jsonMDPair['label'] == 'Repro Creator Name')
+                {
+                    $photographer = str_replace("<span>", "", $jsonMDPair['value']);
+                    $photographer = str_replace("</span>", "", $photographer);
+                }
+                if ($jsonMDPair['label'] == 'Repro Rights Statement')
+                {
+                    $rights = str_replace("<span>", "", $jsonMDPair['value']);
+                    $rights = 'Photograph '.str_replace("</span>", "", $rights);
+                }
+
+            }
+            if ($photographer !== '')
+            {
+                $photoline = ' Photo by '.$photographer;
+            }
+            $thumbnailLink[$numThumbnails] .= '. '. $photoline.' '.$rights.'"/></label>';
 
             echo $thumbnailLink[$numThumbnails];
             $numThumbnails++;
@@ -305,6 +355,11 @@ if (isset($solr[$link_uri_field]))
     <?php
     }
     ?>
+    <div class = "json-link">
+        <p>
+            <?php if (isset($jsonLink)){echo $jsonLink;} ?>
+        </p>
+    </div>
 </div>
 
 <div id="stc-section3" class="container-fluid">

@@ -52,7 +52,9 @@ $config['skylight_fields'] = array(
     'Place Made' => 'dc.coverage.spatial.en',
     'Period' => 'dc.coverage.temporalperiod.en',
     'Link' => 'dc.identifier.uri',
-    'Tags' => 'dc.subject.crowdsourced.en'
+    'Tags' => 'dc.subject.crowdsourced.en',
+    'ImageUri' => 'dc.identifier.imageUri.en',
+    'Permalink' => 'dc.contributor.authorpermalink.en'
 );
 
 $config['skylight_date_filters'] = array();
@@ -70,7 +72,7 @@ $config['skylight_meta_fields'] = array(
     'Tags' => 'dc.subject.crowdsourced.en',
 );
 
-$config['skylight_recorddisplay'] = array('Artist','Title','Alternative Title','Date','Period','Description','Material','Dimensions','Type','Place Made','Subject','Collection','Classification','Signature', 'Inscription','Accession Number');
+$config['skylight_recorddisplay'] = array( 'Permalink','Artist','Title','Alternative Title','Date','Period','Description','Material','Dimensions','Type','Place Made','Subject','Collection','Classification','Signature', 'Inscription','Accession Number');
 
 $config['skylight_searchresult_display'] = array('Author','Title','Medium','Type','Description', 'Bitstream', 'Thumbnail', 'Date');
 

@@ -26,24 +26,29 @@ $config['skylight_fields'] = array(
     'Collection'                => 'collection',
     'Relation'                  => 'dc.relation',
     'Identifier'                => 'dc.identifier',
-    'Title'                     => 'dc.title',
+    'Title'                     => 'dc.title.en',
     'Creator'                   => 'dc.creator',
-    'Temporal Coverage'         => 'dc.coverage.temporal',
-    'Spatialcountry Coverage'   => 'dc.coverage.spatialcountry',
+    'Dates'                     => 'dc.coverage.temporal.en',
+    'Country'                   => 'dc.coverage.spatialcountry.en',
+    'City'                      => 'dc.coverage.spatialcity.en',
     'Format'                    => 'dc.format',
     'Format Extent'             => 'dc.format.extent',
-    'Description'               => 'dc.description',
+    'Description'               => 'dc.description.en',
     'Identifier Citation'       => 'dc.identifier.citation',
     'Source URI'                => 'dc.source.uri',
     'License'                   => 'dc.license',
     'Rights Holder'             => 'dc.rights.holder',
-    'Contributor'               => 'dc.contributor',
+    'Artist'                     => 'dc.contributor.authorfull.en',
     'Rights'                    => 'dc.rights',
     'Original'                  => 'dim.original',
     'Identifier URI'            => 'dc.identifier.uri',
     'Subject'                   => 'dc.subject',
-    'Spatial Coverage'          => 'dc.coverage.spatial',
-    'Image Name'                => 'dc.format.original'
+    'Spatial Coverage'          => 'dc.coverage.spatial.en',
+    'Image Name'                => 'dc.format.original',
+    'Image URI'                 => 'dc.identifier.imageUri',
+    'Artist Biography'          => 'dc.contributor.authorbio.en',
+    'Map Reference'             => 'dc.coverage.spatialcoord.en',
+    'Location'                  => 'dc.coverage.spatialloc.en'
 );
 
 
@@ -53,19 +58,22 @@ $config['skylight_filter_delimiter'] = ':';
 
 $config['skylight_meta_fields'] = array('Title' => 'dc.title',
     'Alternative Title' => 'dc.title.alternative.en',
-    'Maker' => 'dc.contributor.author.en',
+    'Artist' => 'dc.contributor.author.en',
     'Subject' => 'dc.subject',
     'Type' => 'dc.type');
 
 $config['skylight_recorddisplay'] = array(
     'Title',
+    'Artist',
     'Creator',
-    'Temporal Coverage',
-    'Spatialcountry Coverage',
+    'Dates',
+    'City',
+    'Country',
     'Format',
     'Format Extent',
     'Description',
-    'Subject'
+    'Subject',
+    'Artist Biography'
 );
 
 $config['skylight_descriptiondisplay'] = array(
@@ -81,7 +89,7 @@ $config['skylight_descriptiondisplay'] = array(
     'Instrument Type History');
 
 $config['skylight_creatordisplay'] = array(
-    'Maker',
+    'Artist',
     'Author Biography',
     'Associated Musician Full',
     'Associated Musician',
@@ -91,7 +99,7 @@ $config['skylight_fullrecorddisplay'] = array(
     'Alternative Title',
     'Instrument',
     'Instrument Family',
-    'Maker','Subject',
+    'Artist','Subject',
     'Abstract',
     'Place Made',
     'Date Made',
@@ -115,13 +123,13 @@ $config['skylight_fullrecorddisplay'] = array(
     'Instrument Type Info',
     'Instrument Type History');
 
-$config['skylight_searchresult_display'] = array('Title','Instrument','Maker','Subject','Abstract', 'Bitstream', 'Thumbnail');
+$config['skylight_searchresult_display'] = array('Title','Instrument','Artist','Subject','Abstract', 'Bitstream', 'Thumbnail');
 
 
 $config['skylight_search_fields'] = array(
     'Title' => 'dc.title',
     'Type' => 'dc.type',
-    'Maker' => 'dc.contributor.author',
+    'Artist' => 'dc.contributor.author',
     'Place Made' => 'dc.coverage.spatial',
     'Accession Number' => 'dc.identifier.en'
 );
@@ -130,13 +138,13 @@ $config['skylight_related_fields'] = array('Instrument' => 'dc.type.en', 'Genus'
 
 //only by title, no date at the moment
 $config['skylight_sort_fields'] = array(
-    'Maker' => 'dc.contributor.author_sort ', 'Title' => 'dc.title_sort'
+    'Artist' => 'dc.contributor.author_sort ', 'Title' => 'dc.title_sort'
 );
 $config['skylight_default_sort'] = 'dc.title_sort+asc';
 
 $config['skylight_feed_fields'] = array('Title' => 'Title',
     'Author' => 'Author',
-    'Maker' => 'Maker',
+    'Artist' => 'Maker',
     'Subject' => 'Subject',
     'Country' => 'Country',
     'Description' => 'Abstract',

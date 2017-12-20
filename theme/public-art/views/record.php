@@ -1,25 +1,48 @@
 <?php
 
+
 //Fast access to important variables
 $id = $this->skylight_utilities->getField("ID");
 $title = $this->skylight_utilities->getField("Title");
 $coverImageName = $this->skylight_utilities->getField("Image Name");
-$location = $this->skylight_utilities->getField("Spatial Coverage");
+$imageURI = $this->skylight_utilities->getField("Image URI");
+$location = $this->skylight_utilities->getField("Map Reference");
 
+$iiifJson = isset( $solr[$imageURI] ) ? $solr[$imageURI][0] : "";
+
+//Image setup
+$image_name = isset( $solr[$coverImageName][0] ) ? $solr[$coverImageName][0] : "missing.jpg";
+$imageServer = $this->config->item('skylight_image_server');
+
+if($iiifJson != "") {
+    $coverImageJSON = str_replace($iiifJson, '/full/full/0/default.jpg', '/info.json');
+    $json = file_get_contents($iiifJson);
+} else {
+    $coverImageJSON = $imageServer . "/iiif/2/" . $image_name;
+    $json = file_get_contents($coverImageJSON);
+}
 
 ////Image variables setup
 //$coverImageJSON = "http://test.cantaloupe.is.ed.ac.uk/iiif/2/" . $solr[$coverImageName][0];
 //$coverImageURL = $coverImageJSON . '/full/full/0/default.jpg';
 //$coverImage = '<img class="record-image" src ="' .$coverImageURL .'"/>';
-
 //Image variables setup
-$imageNames = ['1.jpg', '2.jpg', '3.jpeg', '4.jpg'];
+//$imageNames = [];
+//$imageNames = ['1.jpg', '2.jpg', '3.jpeg', '4.jpg'];
 echo '<script>var imageSource = [];</script>';
-for($i=0;$i<4;$i++){
-    $coverImageJSON = "http://127.0.0.1:8182/iiif/2/" . $imageNames[$i];
-    $coverImageURL = $coverImageJSON . '/full/full/0/default.jpg';
+$imagetot = 0;
+foreach($solr[$imageURI] as $imageno)
+{
+    $imagetot++;
+}
+for($i=0;$i<$imagetot;$i++){
+   // $coverImageJSON = "http://127.0.0.1:8182/iiif/2/" . $imageNames[$i];
+   // $coverImageURL = $coverImageJSON . '/full/full/0/default.jpg';
+    $coverImageURL = $solr[$imageURI][$i];
+    $coverImageURL = str_replace('http', 'https', $coverImageURL);
+    $coverImageJSON = str_replace('/full/full/0/default.jpg','/info.json', $coverImageURL);
     $coverImage = '<img class="record-image" src ="' .$coverImageURL .'"/>';
-
+    $osjsonid = str_replace('/info.json','', $coverImageJSON);
     $json =  file_get_contents($coverImageJSON);
     $jobj = json_decode($json, true);
     $error = json_last_error();
@@ -29,7 +52,7 @@ for($i=0;$i<4;$i++){
     <script>
     imageSource[' . $i . '] = {
         "@context": "http://iiif.io/api/image/2/context.json",
-            "@id": "' . $coverImageJSON . '",
+            "@id": "' . $osjsonid . '",
             "height": ' . $jsonheight . ',
             "width": ' . $jsonwidth . ',
             "profile": ["http://iiif.io/api/image/2/level2.json",
@@ -47,7 +70,6 @@ for($i=0;$i<4;$i++){
         };
         </script>';
 }
-
 ?>
 
 
@@ -79,7 +101,7 @@ for($i=0;$i<4;$i++){
 
     <!--Page-specific script to load the record image-->
     <script>
-        var imageURL = <?php echo json_encode($coverImageJSON); ?>;
+        var imageURL = <?php echo json_encode($osjsonid); ?>;
         var imageHeight = <?php echo json_encode($jsonheight); ?>;
         var imageWidth = <?php echo json_encode($jsonwidth); ?>;
     </script>
@@ -116,20 +138,26 @@ for($i=0;$i<4;$i++){
                     theme: "light-thick",
                     scrollInertia: 100,
                     mouseWheel:{ preventDefault: true}
-                    });
+                });
             });
         })(jQuery);
     </script>
     <div id="map" class="col-md-5 col-md-offset-1">
         <script>
             $(window).bind("load", function() {
-                initMap(); addLocation("<?php echo $solr[$location][0] ?>");
+                <?php
+                echo 'initMap(convertToCoordinates("' . $solr[$location][0] . '"));';
+                $location = $solr[$location][0] . '", "' . addslashes($title) . '", 0, "../theme/public-art/images/pinpoint.png", 1';
+                echo 'addLocation("' . $location . ');';
+                ?>
             });
         </script>
+        <!--<script>
+            $(window).bind("load", function() {
+                initMap(); addLocation("<?php //echo $solr[$location][0] ?>");
+            });
+        </script>-->
     </div>
     <h4 class="back-to-search" value="Back to Search Results" onClick="history.go(-1);">Back to search</h4>
 </section>
 <div class="content hidden">
-
-
-

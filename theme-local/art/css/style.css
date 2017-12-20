@@ -3,18 +3,13 @@ Site Name: ---
 Site URI: ---
 Description: ---
 Version: 1.0
-
 UPDATE INFO ---------------------------------------
-
 Revision number: 1.0
 Last updated:
 Last update made by: Adam Wright (@rike) for big-backyard.co.nz
-
 CONVENTIONS ---------------------------------------
-
 hyphenate class / id names - #my-id-name, .my-class-name
 class / id names to start with lower case letter (ID's reserved for .net use will start with Upper case letter)
-
 CREDITS -------------------------------------------
 this file adapted from the fantastic resources at http://html5boilerplate.com/
 html5doctor.com Reset Stylesheet (Eric Meyer's Reset Reloaded + HTML5 baseline)
@@ -184,7 +179,7 @@ header				{ position: relative; width: 940px;}
     margin-left: auto;
     margin-top:auto;
     overflow: hidden;
-float:left;}
+    float:left;}
 .thumbnail-strip .first         { margin-left: 0px; }
 .record-thumbnail             {    position: absolute;
     margin: auto;
@@ -192,15 +187,15 @@ float:left;}
     left: 0;
     right: 0;
     bottom: 0;
-max-height:150px;
-max-width:150px;}
+    max-height:150px;
+    max-width:150px;}
 .thumbnail-tile-search { margin-top: 20px; margin-left: 20px; float: left; }
 .record-thumbnail-search { max-width: 150px; max-height: 200px; }
 
 .left-title                     { width: 410px; float: left; }
 .right-image                    { width: 250px; float: right; text-align: center; }
 .left-metadata                  { width: 380px; float: left; padding-top: 10px; }
-.full-image                     { display: block; margin-top: 10px; width: 660px;}
+.full-image                     { display: block;  width: 660px;}
 
 .record-bitstreams              { display: block; width: 660px; margin: 5px 0; }
 .main-image                     { display: block; margin: auto;}
@@ -240,7 +235,7 @@ footer                  { display: block; border-bottom: 1px solid #58A09D;paddi
 
 .footer-links           { margin-top: 15px; margin-bottom: 3px; text-align: left;  border-top: 1px solid #58A09D; border-bottom: 1px solid #58A09D; width: 660px; height: 39px;}
 
-.site-links			    { display: block; padding-top: 10px; padding-bottom: 10px; width: 500px; float: left; height: 19px; }
+.site-links			    { display: block; padding-top: 10px; padding-bottom: 10px; width: 480px; float: left; height: 19px; }
 .site-links a 		    { font-size: 10px; text-transform: uppercase; color: #AAA79E  !important; text-decoration: none; font-weight: bold; border-right: 1px solid #cecece; padding-right: 15px; margin-right: 10px; }
 .site-links a.last	    { border: none; }
 .site-links a:hover	    { text-decoration: underline; color: #58A09D; }
@@ -430,3 +425,278 @@ table tr:last-child                 { border: 0; border-bottom: none; }
     h2, h3{ page-break-after: avoid; }
 }
 
+.jcarousel-wrapper {
+    margin: 20px auto;
+    position: relative;
+    border: 10px solid #fff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 0 2px #999;
+    -moz-box-shadow: 0 0 2px #999;
+    box-shadow: 0 0 2px #999;
+}
+/** Carousel **/
+.jcarousel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+.jcarousel ul {
+    width: 20000em;
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+}
+.jcarousel li {
+    float: left;
+    border: 1px solid #fff;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.jcarousel img {
+    display: block;
+    max-width: 100%;
+    height: auto !important;
+    /* trying */
+    vertical-align: middle;
+    text-align: center;
+}
+/** Carousel Controls **/
+.jcarousel-control-prev,
+.jcarousel-control-next {
+    position: absolute;
+    top: 50%;
+    margin-top: -15px;
+    text-align: center;
+    color: #EB0955;
+    text-decoration: none;
+    text-shadow: 0 0 1px #000;
+    font: 36px Arial, sans-serif;
+
+}
+.jcarousel-control-prev {
+    left: -11px;
+}
+.jcarousel-control-next {
+    right: -11px;
+}
+
+/* Open Seadragon */
+
+div[id^="openseadragon"] {
+    margin: 0 auto;
+    width: 100%;
+    height: 600px;
+}
+
+#toolbarDiv {
+    z-index: 50;
+}
+
+.toolbarItem {
+    width: 51px;
+    height: 50px;
+}
+
+#zoom-in {
+    background-image: url(../images/buttons/zoomin_rest.png);
+}
+
+#zoom-out {
+    background-image: url(../images/buttons/zoomout_rest.png);
+}
+
+#home {
+    background-image: url(../images/buttons/home_rest.png);
+}
+
+#full-page {
+    background-image: url(../images/buttons/fullpage_rest.png);
+}
+
+#next {
+    display: inline-block;
+    position: relative;
+    background-image: url(../images/buttons/next_rest.png);
+}
+
+#prev {
+    display: inline-block;
+    position: relative;
+    background-image: url(../images/buttons/previous_rest.png);
+}
+
+.displayregion {
+    border: 2px solid #630d0d;
+}
+
+
+@media only screen and (max-width : 1800px) {
+
+    div[id^="openseadragon"] {
+        height: 600px;
+    }
+
+    div.grid-item[id^="gallery"]
+    {
+        width: 33.33%;
+        height: 450px;
+    }
+
+}
+
+@media only screen and (max-width : 1200px) {
+
+    div[id^="openseadragon"] {
+        height: 600px;
+    }
+
+    div.grid-item[id^="gallery"]
+    {
+        width: 33.33%;
+        height: 400px;
+    }
+
+}
+
+@media only screen and (max-width : 979px) {
+
+    div[id^="openseadragon"] {
+        height: 800px;
+    }
+
+    div.grid-item[id^="gallery"]
+    {
+        width: 50%;
+        height: 350px;
+    }
+
+}
+
+@media only screen and (max-width : 767px) {
+
+    div[id^="openseadragon"] {
+        height: 600px;
+    }
+
+    div.grid-item[id^="gallery"]
+    {
+        width: 100%;
+        height: 300px;
+    }
+
+    .nav-justified > li {
+        display: table-cell;
+        width: 1%;
+    }
+
+    .nav-justified > li > a  {
+        border-bottom: 1px solid #ddd !important;
+        border-radius: 4px 4px 0 0 !important;
+        margin-bottom: 0 !important;
+    }
+}
+
+@media only screen and (max-width : 480px) {
+
+    div[id^="openseadragon"] {
+        height: 400px;
+    }
+
+    div.grid-item[id^="gallery"]
+    {
+        width: 100%;
+        height: 300px;
+    }
+
+    nav div.col-xs-5 {
+        padding: 5px 0 0;
+        text-align: right;
+    }
+
+    .sch-link-xs a {
+        font-size: 18px;
+        padding-right: 10px;
+    }
+
+}
+
+@media only screen and (max-width : 320px) {
+
+    div[id^="openseadragon"] {
+        height: 200px;
+    }
+
+    div.grid-item[id^="gallery"]
+    {
+        width: 100%;
+        height: 250px;
+    }
+
+    .sch-link-xs a {
+        font-size: 17px;
+        padding-right: 10px;
+    }
+}
+
+#info-box{
+    width:100%;
+    padding: 10px;
+}
+
+
+.record-thumb-strip {
+    height: 160px;
+}
+
+.image-toggler {
+    margin-bottom: 0;
+}
+[type='radio'] {
+    display: none;
+}
+
+
+.iiiflogo                        { display: inline-block; width: 50px; height: 50px;  background: url(../images/iiiflogo.png) no-repeat 0px 0px;}
+.lunalogo                        { display: inline-block; width: 50px; height: 50px;  background: url(../images/LUNAIIIF.png) no-repeat 0px 0px;}
+.uvlogo                          { display: inline-block; width: 50px; height: 50px;  background: url(../images/uv.png) no-repeat 0px 0px;}
+
+
+.thumb-strip {
+    text-align: center;
+    width: 100%;
+    margin-top: 20px;
+    padding-bottom:2px;
+    background-color: #ffffff;
+    border: 1px solid #DCDCDC;
+    border-radius: 12px;
+    display: inline-block;
+    padding-top:2px;
+}
+
+.full-image                         { width: 660px;}
+.imageContainer                    { width: 660px; border: 1px solid #DCDCDC;}
+label
+{
+    font-size : xx-small;
+}
+
+.json-link
+{
+    vertical-align: middle;
+    margin: auto;
+    text-align:center;
+    padding-top: 15px;
+}
+
+.json-link-item
+{
+    padding: 2px;
+    vertical-align: middle;
+    text-align:center;
+    height:50px;
+}
