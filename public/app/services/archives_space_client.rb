@@ -139,6 +139,9 @@ class ArchivesSpaceClient
 
   private
   
+  class LoginFailedException < StandardError; end
+
+  class RequestFailedException < StandardError; end
 
   # perform the actual search, returning json-ized results, 
   # or raising an error
